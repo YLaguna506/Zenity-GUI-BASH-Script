@@ -1,0 +1,44 @@
+#!/bin/bash
+ 
+clear;
+while [[ $option != 5 ]]
+do
+clear;
+ 
+    menu=$(zenity --entry --title="Menu Principal" --text="\n1) Ver mis opciones \n2) Ver mis lista de archivos \n3) Ver un calendario \n4) Crear un directorio \n5) Salir \n\n Entre opcion: ")
+    case $menu in
+   	 '1')
+   	 clear | ps -ef |grep $(whoami) >temp ; cat temp |more
+   	 ;;
+ 
+   	 '2')
+   	 clear; cd ~ ; ls | more ; sleep 3
+   	 ;;
+ 
+   	 '3')
+   	 clear; cal; sleep 1
+   	 ;;
+ 
+   	 '4')
+   	 clear;
+   	 number=$(zenity --entry --title="Entre el nombre del directorio nuevo =" --text="\n1) Entre nombre del directorio : ")
+   	 mkdir $number
+   	 zenity --info --title="Terminado" --text="Directorio $number creado"
+   	 ;;
+ 
+   	 '5')
+   	 zenity --info --title="Menu Principal" --text="Adios gracias por usar este script"
+   	 exit 0
+   	 ;;
+ 
+   	 *)
+   	 clear;
+   	 echo -e "Opcion erronea trate de nuevo "
+   	 sleep 1
+   	 ;;
+ 
+ esac
+done
+ 
+ 
+
